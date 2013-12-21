@@ -268,7 +268,7 @@ RTCSession.prototype.terminate = function(options) {
 RTCSession.prototype.answer = function(options) {
   options = options || {};
 
-  var
+  var idx, length, hasAudio, hasVideo,
     self = this,
     request = this.request,
     extraHeaders = options.extraHeaders || [],
@@ -366,6 +366,37 @@ RTCSession.prototype.answer = function(options) {
   
   extraHeaders.unshift('Contact: ' + self.contact);
 
+  length = this.getRemoteStreams().length;
+  
+  for (idx=0; idx<length; idx++) {
+    if (this.getRemoteStreams()[idx].getAudioTracks().length > 0) {
+      hasAudio=true;
+    }
+    if (this.getRemoteStreams()[idx].getVideoTracks().length > 0) {
+      hasVideo=true;
+    }
+  }
+  
+  if (!hasAudio && mediaConstraints.audio === true) {
+    mediaConstraints.audio = false;
+    if (mediaStream) {
+      length = mediaStream.getAudioTracks().length;
+      for (idx=0; idx<length; idx++) {
+        mediaStream.removeTrack(mediaStream.getAudioTracks()[idx]);
+      }
+    }
+  }
+  
+  if (!hasVideo && mediaConstraints.video === true) {
+    mediaConstraints.video = false;
+    if (mediaStream) {
+      length = mediaStream.getVideoTracks().length;
+      for (idx=0; idx<length; idx++) {
+        mediaStream.removeTrack(mediaStream.getVideoTracks()[idx]);
+      }
+    }
+  }
+  
   if (mediaStream) {
     userMediaSucceeded(mediaStream);
   } else {
