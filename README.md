@@ -1,7 +1,7 @@
 JsSIP for Node
 ==============
 
-This is a fork of [JsSIP] for Node.js.
+This is a fork of [JsSIP](http://www.jssip.net/) for Node.js.
 
 Why?
 ====
@@ -15,7 +15,7 @@ Is it compatible with plain JsSIP?
 
 The browserify version of this project should pass all JsSIP tests.
 
-This means you can use the JsSIP documentation to get started. However, since this implementation is different, please, please report all issues using our [tracker](issues) rather than JsSIP's, even if it appears the issues is with their code. I'd rather have an extra issue to handle than bother the original developers with something they might not care about and didn't ask for.
+This means you can use the JsSIP documentation to get started. However, since this implementation is different, please, please report all issues using our [tracker](https://github.com/shimaore/jssip-for-node/issues) rather than JsSIP's, even if it appears the issues is with their code. I'd rather have an extra issue to handle than bother the original developers with something they might not care about and didn't ask for.
 
 How is it different from JsSIP?
 ===============================
@@ -39,7 +39,7 @@ Plenty. This is designed for experimentation, not for production. This means at 
 Support
 =======
 
-Please use [github issues](issues) and [the wiki](wiki).
+Please use [github issues](https://github.com/shimaore/jssip-for-node/issues) and [the wiki](https://github.com/shimaore/jssip-for-node/wiki).
 
 Name
 ====

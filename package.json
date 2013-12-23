@@ -1,10 +1,10 @@
 {
-  "name": "jssip",
+  "name": "jssip-for-node",
   "title": "JsSIP",
-  "description": "the Javascript SIP library",
+  "description": "the Javascript SIP library, ported to Node.js",
   "version": "0.3.7",
-  "homepage": "http://jssip.net",
-  "author": "José Luis Millán <jmillan@aliax.net>",
+  "homepage": "https://github.com/shimaore/jssip-for-node",
+  "author": "Stéphane Alnet <stephane@shimaore.net>",
   "contributors": [
     {
       "url": "http://jssip.net/authors/"
@@ -12,7 +12,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/versatica/JsSIP.git"
+    "url": "https://github.com/shimaore/jssip-for-node.git"
   },
   "keywords": [
     "sip",
@@ -23,11 +23,7 @@
     "grunt-cli": "~0.1.6",
     "grunt-contrib-qunit": "~0.2.0",
     "pegjs": "0.7.0",
-    "browserify": "~3.14.1",
     "grunt-browserify": "~1.3.0"
-  },
-  "engines": {
-    "node": ">=0.8"
   },
   "license": "MIT",
   "scripts": {
