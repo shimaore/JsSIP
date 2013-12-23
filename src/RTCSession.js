@@ -209,7 +209,7 @@ RTCSession.prototype.answer = function(options) {
            * Response retransmissions cannot be accomplished by transaction layer
            *  since it is destroyed when receiving the first 2xx answer
            */
-          self.timers.invite2xxTimer = window.setTimeout(function invite2xxRetransmission() {
+          self.timers.invite2xxTimer = JsSIP.global.setTimeout(function invite2xxRetransmission() {
               if (self.status !== C.STATUS_WAITING_FOR_ACK) {
                 return;
               }
@@ -222,7 +222,7 @@ RTCSession.prototype.answer = function(options) {
                   timeout = JsSIP.Timers.T2;
                 }
               }
-              self.timers.invite2xxTimer = window.setTimeout(
+              self.timers.invite2xxTimer = JsSIP.global.setTimeout(
                 invite2xxRetransmission, timeout
               );
             },
@@ -234,10 +234,10 @@ RTCSession.prototype.answer = function(options) {
            * If a UAS generates a 2xx response and never receives an ACK,
            *  it SHOULD generate a BYE to terminate the dialog.
            */
-          self.timers.ackTimer = window.setTimeout(function() {
+          self.timers.ackTimer = JsSIP.global.setTimeout(function() {
               if(self.status === C.STATUS_WAITING_FOR_ACK) {
                 console.log(LOG_PREFIX + 'no ACK received, terminating the call');
-                window.clearTimeout(self.timers.invite2xxTimer);
+                JsSIP.global.clearTimeout(self.timers.invite2xxTimer);
                 self.sendBye();
                 self.ended('remote', null, JsSIP.C.causes.NO_ACK);
               }
@@ -287,7 +287,7 @@ RTCSession.prototype.answer = function(options) {
     return;
   }
 
-  window.clearTimeout(this.timers.userNoAnswerTimer);
+  JsSIP.global.clearTimeout(this.timers.userNoAnswerTimer);
 
   this.rtcMediaHandler.getUserMedia(
     userMediaSucceeded,
@@ -387,7 +387,7 @@ RTCSession.prototype.sendDTMF = function(tones, options) {
     }
 
     // Set timeout for the next tone
-    window.setTimeout(sendDTMF, timeout);
+    JsSIP.global.setTimeout(sendDTMF, timeout);
   };
 
   // Send the first tone
@@ -471,7 +471,7 @@ RTCSession.prototype.init_incoming = function(request) {
       self.status = C.STATUS_WAITING_FOR_ANSWER;
 
       // Set userNoAnswerTimer
-      self.timers.userNoAnswerTimer = window.setTimeout(function() {
+      self.timers.userNoAnswerTimer = JsSIP.global.setTimeout(function() {
           request.reply(408);
           self.failed('local',null, JsSIP.C.causes.NO_ANSWER);
         }, self.ua.configuration.no_answer_timeout
@@ -481,7 +481,7 @@ RTCSession.prototype.init_incoming = function(request) {
        * RFC3261 13.3.1
        */
       if (expires) {
-        self.timers.expiresTimer = window.setTimeout(function() {
+        self.timers.expiresTimer = JsSIP.global.setTimeout(function() {
             if(self.status === C.STATUS_WAITING_FOR_ANSWER) {
               request.reply(487);
               self.failed('system', null, JsSIP.C.causes.EXPIRES);
@@ -608,7 +608,7 @@ RTCSession.prototype.close = function() {
 
   // Clear session timers
   for(idx in this.timers) {
-    window.clearTimeout(this.timers[idx]);
+    JsSIP.global.clearTimeout(this.timers[idx]);
   }
 
   // Terminate dialogs
@@ -718,8 +718,8 @@ RTCSession.prototype.receiveRequest = function(request) {
     switch(request.method) {
       case JsSIP.C.ACK:
         if(this.status === C.STATUS_WAITING_FOR_ACK) {
-          window.clearTimeout(this.timers.ackTimer);
-          window.clearTimeout(this.timers.invite2xxTimer);
+          JsSIP.global.clearTimeout(this.timers.ackTimer);
+          JsSIP.global.clearTimeout(this.timers.invite2xxTimer);
           this.status = C.STATUS_CONFIRMED;
         }
         break;

@@ -125,7 +125,7 @@ uri_scheme      = uri_scheme:  "sip"i {
                     data.scheme = uri_scheme.toLowerCase(); }
 
 userinfo        = user (":" password)? "@" {
-                    data.user = window.decodeURIComponent(input.substring(pos-1, offset));}
+                    data.user = JsSIP.global.decodeURIComponent(input.substring(pos-1, offset));}
 
 user            = ( unreserved / escaped / user_unreserved )+
 

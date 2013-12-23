@@ -211,7 +211,7 @@ UA.prototype.stop = function() {
   }
   
   // Clear transportRecoveryTimer
-  window.clearTimeout(this.transportRecoveryTimer);
+  JsSIP.global.clearTimeout(this.transportRecoveryTimer);
 
   // Close registrator
   console.log(LOG_PREFIX +'closing registrator');
@@ -229,7 +229,7 @@ UA.prototype.stop = function() {
   }
 
   this.status = C.STATUS_USER_CLOSED;
-  this.shutdownGraceTimer = window.setTimeout(
+  this.shutdownGraceTimer = JsSIP.global.setTimeout(
     function() { ua.transport.disconnect(); },
     '5000'
   );
@@ -623,7 +623,7 @@ UA.prototype.recoverTransport = function(ua) {
 
   console.log(LOG_PREFIX + 'next connection attempt in '+ nextRetry +' seconds');
 
-  this.transportRecoveryTimer = window.setTimeout(
+  this.transportRecoveryTimer = JsSIP.global.setTimeout(
     function(){
       ua.transportRecoverAttempts = count + 1;
       new JsSIP.Transport(ua, server);
@@ -701,7 +701,7 @@ UA.prototype.loadConfig = function(configuration) {
       if(value === null || value === "" || value === undefined) { continue; }
       // If it's a number with NaN value then also apply its default value.
       // NOTE: JS does not allow "value === NaN", the following does the work:
-      else if(typeof(value) === 'number' && window.isNaN(value)) { continue; }
+      else if(typeof(value) === 'number' && JsSIP.global.isNaN(value)) { continue; }
 
       checked_value = UA.configuration_check.optional[parameter](value);
       if (checked_value !== undefined) {
@@ -799,7 +799,7 @@ UA.prototype.loadConfig = function(configuration) {
         console.log('· ' + parameter + ': ' + 'NOT SHOWN');
         break;
       default:
-        console.log('· ' + parameter + ': ' + window.JSON.stringify(settings[parameter]));
+        console.log('· ' + parameter + ': ' + JsSIP.global.JSON.stringify(settings[parameter]));
     }
     UA.configuration_skeleton[parameter].value = settings[parameter];
   }
@@ -972,7 +972,7 @@ UA.configuration_check = {
     connection_recovery_max_interval: function(connection_recovery_max_interval) {
       var value;
       if(JsSIP.Utils.isDecimal(connection_recovery_max_interval)) {
-        value = window.Number(connection_recovery_max_interval);
+        value = JsSIP.global.Number(connection_recovery_max_interval);
         if(value > 0) {
           return value;
         }
@@ -982,7 +982,7 @@ UA.configuration_check = {
     connection_recovery_min_interval: function(connection_recovery_min_interval) {
       var value;
       if(JsSIP.Utils.isDecimal(connection_recovery_min_interval)) {
-        value = window.Number(connection_recovery_min_interval);
+        value = JsSIP.global.Number(connection_recovery_min_interval);
         if(value > 0) {
           return value;
         }
@@ -1012,7 +1012,7 @@ UA.configuration_check = {
     no_answer_timeout: function(no_answer_timeout) {
       var value;
       if (JsSIP.Utils.isDecimal(no_answer_timeout)) {
-        value = window.Number(no_answer_timeout);
+        value = JsSIP.global.Number(no_answer_timeout);
         if (value > 0) {
           return value;
         }
@@ -1032,7 +1032,7 @@ UA.configuration_check = {
     register_expires: function(register_expires) {
       var value;
       if (JsSIP.Utils.isDecimal(register_expires)) {
-        value = window.Number(register_expires);
+        value = JsSIP.global.Number(register_expires);
         if (value > 0) {
           return value;
         }

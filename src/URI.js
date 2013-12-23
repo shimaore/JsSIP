@@ -137,8 +137,8 @@ URI.prototype = {
       this.user,
       this.host,
       this.port,
-      window.JSON.parse(window.JSON.stringify(this.parameters)),
-      window.JSON.parse(window.JSON.stringify(this.headers)));
+      JsSIP.global.JSON.parse(JsSIP.global.JSON.stringify(this.parameters)),
+      JsSIP.global.JSON.parse(JsSIP.global.JSON.stringify(this.headers)));
   },
 
   toString: function(){

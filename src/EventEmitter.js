@@ -156,7 +156,7 @@ EventEmitter.prototype = {
 
     var e = new JsSIP.Event(event, sender, data);
 
-    window.setTimeout(
+    JsSIP.global.setTimeout(
       function(){
         var idx=0;
         

@@ -7,43 +7,37 @@ var WebRTC;
 
 WebRTC = {};
 
-if (typeof window === 'undefined') {
-  WebRTC.isSupported = false;
-  JsSIP.WebRTC = WebRTC;
-  return;
-}
-
 // getUserMedia
-if (window.navigator.webkitGetUserMedia) {
-  WebRTC.getUserMedia = window.navigator.webkitGetUserMedia.bind(navigator);
+if (JsSIP.global.navigator.webkitGetUserMedia) {
+  WebRTC.getUserMedia = JsSIP.global.navigator.webkitGetUserMedia.bind(navigator);
 }
-else if (window.navigator.mozGetUserMedia) {
-  WebRTC.getUserMedia = window.navigator.mozGetUserMedia.bind(navigator);
+else if (JsSIP.global.navigator.mozGetUserMedia) {
+  WebRTC.getUserMedia = JsSIP.global.navigator.mozGetUserMedia.bind(navigator);
 }
-else if (window.navigator.getUserMedia) {
-  WebRTC.getUserMedia = window.navigator.getUserMedia.bind(navigator);
+else if (JsSIP.global.navigator.getUserMedia) {
+  WebRTC.getUserMedia = JsSIP.global.navigator.getUserMedia.bind(navigator);
 }
 
 // RTCPeerConnection
-if (window.webkitRTCPeerConnection) {
-  WebRTC.RTCPeerConnection = window.webkitRTCPeerConnection;
+if (JsSIP.global.webkitRTCPeerConnection) {
+  WebRTC.RTCPeerConnection = JsSIP.global.webkitRTCPeerConnection;
 }
-else if (window.mozRTCPeerConnection) {
-  WebRTC.RTCPeerConnection = window.mozRTCPeerConnection;
+else if (JsSIP.global.mozRTCPeerConnection) {
+  WebRTC.RTCPeerConnection = JsSIP.global.mozRTCPeerConnection;
 }
-else if (window.RTCPeerConnection) {
-  WebRTC.RTCPeerConnection = window.RTCPeerConnection;
+else if (JsSIP.global.RTCPeerConnection) {
+  WebRTC.RTCPeerConnection = JsSIP.global.RTCPeerConnection;
 }
 
 // RTCSessionDescription
-if (window.webkitRTCSessionDescription) {
-  WebRTC.RTCSessionDescription = window.webkitRTCSessionDescription;
+if (JsSIP.global.webkitRTCSessionDescription) {
+  WebRTC.RTCSessionDescription = JsSIP.global.webkitRTCSessionDescription;
 }
-else if (window.mozRTCSessionDescription) {
-  WebRTC.RTCSessionDescription = window.mozRTCSessionDescription;
+else if (JsSIP.global.mozRTCSessionDescription) {
+  WebRTC.RTCSessionDescription = JsSIP.global.mozRTCSessionDescription;
 }
-else if (window.RTCSessionDescription) {
-  WebRTC.RTCSessionDescription = window.RTCSessionDescription;
+else if (JsSIP.global.RTCSessionDescription) {
+  WebRTC.RTCSessionDescription = JsSIP.global.RTCSessionDescription;
 }
 
 // New syntax for getting streams in Chrome M26.

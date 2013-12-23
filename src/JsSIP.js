@@ -48,6 +48,8 @@ var JsSIP = (function() {
 }());
 if(typeof window === 'undefined') {
   module.exports = JsSIP;
+  JsSIP.global = global;
 } else {
   window.JsSIP = JsSIP;
+  JsSIP.global = window;
 }

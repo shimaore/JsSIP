@@ -3126,7 +3126,7 @@ module.exports = (function(){
         }
         if (result0 !== null) {
           result0 = (function(offset) {
-                            data.user = window.decodeURIComponent(input.substring(pos-1, offset));})(pos0);
+                            data.user = JsSIP.global.decodeURIComponent(input.substring(pos-1, offset));})(pos0);
         }
         if (result0 === null) {
           pos = pos0;

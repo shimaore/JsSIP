@@ -36,7 +36,7 @@ JsSIP.Subscriber.prototype = {
       console.log(JsSIP.C.LOG_SUBSCRIBER,'terminating Subscriber');
 
       this.state = 'terminated';
-      window.clearTimeout(this.N);
+      JsSIP.global.clearTimeout(this.N);
 
       for (subscription in this.subscriptions) {
         this.subscriptions[subscription].unsubscribe();
@@ -84,8 +84,8 @@ JsSIP.Subscriber.prototype = {
             expires = response.s('Expires');
 
             if (expires && expires <= subscriber.expires) {
-              window.clearTimeout(subscriber.N);
-              subscriber.N = window.setTimeout(
+              JsSIP.global.clearTimeout(subscriber.N);
+              subscriber.N = JsSIP.global.setTimeout(
                 function() {subscriber.timer_N();},
                 (expires * 1000)
               );
@@ -125,7 +125,7 @@ JsSIP.Subscriber.prototype = {
         subscriber.id = this.request.headers['Call-ID'] + from_tag;
         subscriber.ua.sessions[subscriber.id] = subscriber;
         subscriber.state = 'notify_wait';
-        subscriber.N = window.setTimeout(
+        subscriber.N = JsSIP.global.setTimeout(
           function() {subscriber.timer_N();},
           (JsSIP.Timers.T1 * 64)
         );
@@ -174,14 +174,14 @@ JsSIP.Subscriber.prototype = {
       case 'pending':
       case 'active':
         //create the subscription.
-        window.clearTimeout(this.N);
+        JsSIP.global.clearTimeout(this.N);
         new JsSIP.Subscription(this, request, subscription_state.state, expires);
         break;
       case 'terminated':
         if (subscription_state.reason) {
           console.log(JsSIP.C.LOG_SUBSCRIBER,'terminating subscription with reason '+ subscription_state.reason);
         }
-        window.clearTimeout(this.N);
+        JsSIP.global.clearTimeout(this.N);
         this.close();
         break;
     }
@@ -271,7 +271,7 @@ JsSIP.Subscription.prototype = {
   close: function() {
     this.state = 'terminated';
     this.terminateDialog();
-    window.clearTimeout(this.N);
+    JsSIP.global.clearTimeout(this.N);
     this.subscriber.onSubscriptionTerminate(this);
   },
 
@@ -333,8 +333,8 @@ JsSIP.Subscription.prototype = {
         /* falls through */
       case 'pending':
         this.expires = subscription_state.expires || this.expires;
-        window.clearTimeout(subscription.N);
-        subscription.N = window.setTimeout(
+        JsSIP.global.clearTimeout(subscription.N);
+        subscription.N = JsSIP.global.setTimeout(
           function() {subscription.timer_N();},
           (this.expires * 1000)
         );
@@ -370,8 +370,8 @@ JsSIP.Subscription.prototype = {
               expires = response.s('Expires');
 
               if (expires && expires <= subscription.expires) {
-                window.clearTimeout(subscription.N);
-                subscription.N = window.setTimeout(
+                JsSIP.global.clearTimeout(subscription.N);
+                subscription.N = JsSIP.global.setTimeout(
                   function() {subscription.timer_N();},
                   (expires * 1000)
                 );
@@ -396,8 +396,8 @@ JsSIP.Subscription.prototype = {
       };
 
       this.send = function() {
-        window.clearTimeout(subscription.N);
-        subscription.N = window.setTimeout(
+        JsSIP.global.clearTimeout(subscription.N);
+        subscription.N = JsSIP.global.setTimeout(
           function() {subscription.timer_N();},
           (JsSIP.Timers.T1 * 64)
         );
@@ -431,8 +431,8 @@ JsSIP.Subscription.prototype = {
       this.receiveResponse = function(){};
 
       this.send = function() {
-        window.clearTimeout(subscription.N);
-        subscription.N = window.setTimeout(
+        JsSIP.global.clearTimeout(subscription.N);
+        subscription.N = JsSIP.global.setTimeout(
           function() {subscription.timer_N();},
           (JsSIP.Timers.T1 * 64)
         );

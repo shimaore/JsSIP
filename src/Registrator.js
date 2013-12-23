@@ -80,7 +80,7 @@ Registrator.prototype = {
 
       // Clear registration timer
       if (this.registrationTimer !== null) {
-        window.clearTimeout(this.registrationTimer);
+        JsSIP.global.clearTimeout(this.registrationTimer);
         this.registrationTimer = null;
       }
 
@@ -120,7 +120,7 @@ Registrator.prototype = {
 
           // Re-Register before the expiration interval has elapsed.
           // For that, decrease the expires value. ie: 3 seconds
-          this.registrationTimer = window.setTimeout(function() {
+          this.registrationTimer = JsSIP.global.setTimeout(function() {
             self.registrationTimer = null;
             self.register();
           }, (expires * 1000) - 3000);
@@ -191,7 +191,7 @@ Registrator.prototype = {
 
     // Clear the registration timer.
     if (this.registrationTimer !== null) {
-      window.clearTimeout(this.registrationTimer);
+      JsSIP.global.clearTimeout(this.registrationTimer);
       this.registrationTimer = null;
     }
 
@@ -287,7 +287,7 @@ Registrator.prototype = {
   onTransportClosed: function() {
     this.registered_before = this.registered;
     if (this.registrationTimer !== null) {
-      window.clearTimeout(this.registrationTimer);
+      JsSIP.global.clearTimeout(this.registrationTimer);
       this.registrationTimer = null;
     }
 

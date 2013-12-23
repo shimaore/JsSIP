@@ -27,7 +27,7 @@ RequestSender.prototype = {
     if (response.method === JsSIP.C.INVITE && status_code === 491) {
       if (!this.reattempt) {
         this.request.cseq.value = this.request.dialog.local_seqnum += 1;
-        this.reatemptTimer = window.setTimeout(
+        this.reatemptTimer = JsSIP.global.setTimeout(
           function() {
             if (self.session.status !== JsSIP.RTCSession.C.STATUS_TERMINATED) {
               self.reattempt = true;

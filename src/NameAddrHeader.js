@@ -76,7 +76,7 @@ NameAddrHeader.prototype = {
     return new NameAddrHeader(
       this.uri.clone(),
       this.display_name,
-      window.JSON.parse(window.JSON.stringify(this.parameters)));
+      JsSIP.global.JSON.parse(JsSIP.global.JSON.stringify(this.parameters)));
   },
 
   toString: function() {

@@ -61,7 +61,7 @@ Transport.prototype = {
   disconnect: function() {
     if(this.ws) {
       // Clear reconnectTimer
-      window.clearTimeout(this.reconnectTimer);
+      JsSIP.global.clearTimeout(this.reconnectTimer);
       
       this.closed = true;
       console.log(LOG_PREFIX +'closing WebSocket ' + this.server.ws_uri);
@@ -69,7 +69,7 @@ Transport.prototype = {
     }
 
     if (this.reconnectTimer !== null) {
-      window.clearTimeout(this.reconnectTimer);
+      JsSIP.global.clearTimeout(this.reconnectTimer);
       this.reconnectTimer = null;
       this.ua.emit('disconnected', this.ua, {
         transport: this,
@@ -133,7 +133,7 @@ Transport.prototype = {
     console.log(LOG_PREFIX +'WebSocket ' + this.server.ws_uri + ' connected');
     // Clear reconnectTimer since we are not disconnected
     if (this.reconnectTimer !== null) {
-      window.clearTimeout(this.reconnectTimer);
+      JsSIP.global.clearTimeout(this.reconnectTimer);
       this.reconnectTimer = null;
     }
     // Reset reconnection_attempts
@@ -276,7 +276,7 @@ Transport.prototype = {
     } else {
       console.log(LOG_PREFIX +'trying to reconnect to WebSocket ' + this.server.ws_uri + ' (reconnection attempt ' + this.reconnection_attempts + ')');
 
-      this.reconnectTimer = window.setTimeout(function() {
+      this.reconnectTimer = JsSIP.global.setTimeout(function() {
         transport.connect();
         transport.reconnectTimer = null;
       }, this.ua.configuration.ws_server_reconnection_timeout * 1000);
