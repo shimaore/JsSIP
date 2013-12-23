@@ -6,7 +6,7 @@
  * JsSIP Exceptions.
  * @augments JsSIP
  */
-(function(JsSIP) {
+module.exports = function(JsSIP) {
 var Exceptions;
 
 Exceptions= {
@@ -45,4 +45,4 @@ Exceptions= {
 };
 
 JsSIP.Exceptions = Exceptions;
-}(JsSIP));
+};

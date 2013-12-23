@@ -12,7 +12,7 @@
  * @fileoverview in-Dialog Request Sender
  */
 
-(function(JsSIP) {
+module.exports = function(JsSIP) {
 var InDialogRequestSender;
 
 InDialogRequestSender = function(applicant) {
@@ -46,4 +46,4 @@ InDialogRequestSender.prototype = {
 };
 
 JsSIP.InDialogRequestSender = InDialogRequestSender;
-}(JsSIP));
+};

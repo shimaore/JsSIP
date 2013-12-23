@@ -2,7 +2,7 @@
  * @fileoverview Utils
  */
 
-(function(JsSIP) {
+module.exports = function(JsSIP) {
 var Utils;
 
 Utils= {
@@ -411,4 +411,4 @@ Utils= {
 };
 
 JsSIP.Utils = Utils;
-}(JsSIP));
+};

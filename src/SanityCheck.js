@@ -11,7 +11,7 @@
  * @param {JsSIP.Transport} transport
  * @returns {Boolean}
  */
-(function(JsSIP) {
+module.exports = function(JsSIP) {
 var sanityCheck,
  LOG_PREFIX = JsSIP.name +' | '+ 'SANITY CHECK' +' | ',
 
@@ -222,4 +222,4 @@ sanityCheck = function(m, u, t) {
 };
 
 JsSIP.sanityCheck = sanityCheck;
-}(JsSIP));
+};

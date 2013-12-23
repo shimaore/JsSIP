@@ -6,7 +6,7 @@
  * @class DTMF
  * @param {JsSIP.RTCSession} session
  */
-(function(JsSIP) {
+module.exports = function(JsSIP) {
 
 var DTMF,
   C = {
@@ -181,4 +181,4 @@ DTMF.prototype.init_incoming = function(request) {
 
 DTMF.C = C;
 return DTMF;
-}(JsSIP));
+};

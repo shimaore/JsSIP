@@ -2,10 +2,16 @@
  * @fileoverview WebRTC
  */
 
-(function(JsSIP) {
+module.exports = function(JsSIP) {
 var WebRTC;
 
 WebRTC = {};
+
+if (typeof window === 'undefined') {
+  WebRTC.isSupported = false;
+  JsSIP.WebRTC = WebRTC;
+  return;
+}
 
 // getUserMedia
 if (window.navigator.webkitGetUserMedia) {
@@ -61,4 +67,4 @@ else {
 }
 
 JsSIP.WebRTC = WebRTC;
-}(JsSIP));
+};

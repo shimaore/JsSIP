@@ -10,7 +10,7 @@
  * @param {Enum} type UAC / UAS
  * @param {Enum} state JsSIP.Dialog.C.STATUS_EARLY / JsSIP.Dialog.C.STATUS_CONFIRMED
  */
-(function(JsSIP) {
+module.exports = function(JsSIP) {
 var Dialog,
   LOG_PREFIX = JsSIP.name +' | '+ 'DIALOG' +' | ',
   C = {
@@ -198,4 +198,4 @@ Dialog.prototype = {
 
 Dialog.C = C;
 JsSIP.Dialog = Dialog;
-}(JsSIP));
+};

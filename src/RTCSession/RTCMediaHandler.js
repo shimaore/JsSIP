@@ -7,7 +7,7 @@
  * @param {JsSIP.RTCSession} session
  * @param {Object} [contraints]
  */
-(function(JsSIP){
+module.exports = function(JsSIP){
 
 var RTCMediaHandler = function(session, constraints) {
   constraints = constraints || {};
@@ -209,4 +209,4 @@ RTCMediaHandler.prototype = {
 
 // Return since it will be assigned to a variable.
 return RTCMediaHandler;
-}(JsSIP));
+};

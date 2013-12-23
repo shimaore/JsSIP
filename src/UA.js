@@ -7,7 +7,7 @@
  * @augments JsSIP
  * @class Class creating a SIP User Agent.
  */
-(function(JsSIP) {
+module.exports = function(JsSIP) {
 var UA,
   LOG_PREFIX = JsSIP.name +' | '+ 'UA' +' | ',
   C = {
@@ -1140,4 +1140,4 @@ UA.configuration_check = {
 
 UA.C = C;
 JsSIP.UA = UA;
-}(JsSIP));
+};

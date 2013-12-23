@@ -7,7 +7,7 @@
  * @param {JsSIP.RTCSession | RTCSession applicant} applicant
  * @param {JsSIP.OutgoingRequest} [request]
  */
-(function(JsSIP){
+module.exports = function(JsSIP){
 
 var RequestSender = function(applicant, request) {
   this.applicant = applicant;
@@ -67,4 +67,4 @@ RequestSender.prototype = {
 };
 
 return RequestSender;
-}(JsSIP));
+};

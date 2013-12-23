@@ -6,12 +6,12 @@
  * @augments JsSIP
  * @class Invite Session
  */
-(function(JsSIP) {
+module.exports = function(JsSIP) {
 
 // Load dependencies
-var RequestSender   = @@include('../src/RTCSession/RequestSender.js')
-var RTCMediaHandler = @@include('../src/RTCSession/RTCMediaHandler.js')
-var DTMF            = @@include('../src/RTCSession/DTMF.js')
+var RequestSender   = require('./RTCSession/RequestSender')(JsSIP);
+var RTCMediaHandler = require('./RTCSession/RTCMediaHandler')(JsSIP);
+var DTMF            = require('./RTCSession/DTMF')(JsSIP);
 
 var RTCSession,
   LOG_PREFIX = JsSIP.name +' | '+ 'RTC SESSION' +' | ',
@@ -1099,4 +1099,4 @@ RTCSession.prototype.failed = function(originator, message, cause) {
 
 RTCSession.C = C;
 JsSIP.RTCSession = RTCSession;
-}(JsSIP));
+};

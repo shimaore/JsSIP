@@ -7,7 +7,7 @@
  * @augments JsSIP
  * @namespace
  */
-(function(JsSIP) {
+module.exports = function(JsSIP) {
 var Parser,
   LOG_PREFIX = JsSIP.name +' | '+ 'PARSER' +' | ';
 
@@ -242,4 +242,4 @@ Parser.parseMessage = function(data) {
 };
 
 JsSIP.Parser = Parser;
-}(JsSIP));
+};

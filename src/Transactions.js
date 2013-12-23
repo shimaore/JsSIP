@@ -6,7 +6,7 @@
  * SIP Transactions module.
  * @augments JsSIP
  */
-(function(JsSIP) {
+module.exports = function(JsSIP) {
 var Transactions,
   LOG_PREFIX =  JsSIP.name +' | '+ 'TRANSACTION' +' | ',
   C = {
@@ -664,4 +664,4 @@ Transactions.checkTransaction = function(ua, request) {
 
 Transactions.C = C;
 JsSIP.Transactions = Transactions;
-}(JsSIP));
+};

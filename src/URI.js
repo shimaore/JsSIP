@@ -14,7 +14,7 @@
  * @param {Object} [headers]
  *
  */
-(function(JsSIP) {
+module.exports = function(JsSIP) {
 var URI;
 
 URI = function(scheme, user, host, port, parameters, headers) {
@@ -209,4 +209,4 @@ URI.parse = function(uri) {
 };
 
 JsSIP.URI = URI;
-}(JsSIP));
+};

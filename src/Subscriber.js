@@ -8,7 +8,7 @@
  * @augments JsSIP
  * @class Class creating a SIP Subscriber.
  */
-
+module.exports = function(JsSIP) {
 JsSIP.Subscriber = function() {};
 JsSIP.Subscriber.prototype = {
   /**
@@ -449,4 +449,5 @@ JsSIP.Subscription.prototype = {
       this.send();
     };
   }
+};
 };

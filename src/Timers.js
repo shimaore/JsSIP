@@ -5,7 +5,7 @@
 /**
  * @augments JsSIP
  */
-(function(JsSIP) {
+module.exports = function(JsSIP) {
 var Timers,
   T1 = 500,
   T2 = 4000,
@@ -28,4 +28,4 @@ Timers = {
 };
 
 JsSIP.Timers = Timers;
-}(JsSIP));
+};

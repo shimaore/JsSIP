@@ -7,6 +7,7 @@
  * @augments JsSIP
  */
 
+module.exports = function(JsSIP) {
 JsSIP.C= {
   USER_AGENT: JsSIP.name +' '+ JsSIP.version,
 
@@ -149,4 +150,5 @@ JsSIP.C= {
     604: 'Does Not Exist Anywhere',
     606: 'Not Acceptable'
   }
+};
 };

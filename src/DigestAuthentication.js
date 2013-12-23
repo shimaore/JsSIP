@@ -9,7 +9,7 @@
  * @function Digest Authentication
  * @param {JsSIP.UA} ua
  */
-(function(JsSIP) {
+module.exports = function(JsSIP) {
 var DigestAuthentication,
   LOG_PREFIX = JsSIP.name +' | '+ 'DIGEST AUTHENTICATION' +' | ';
 
@@ -165,4 +165,4 @@ DigestAuthentication.prototype.updateNcHex = function() {
 };
 
 JsSIP.DigestAuthentication = DigestAuthentication;
-}(JsSIP));
+};

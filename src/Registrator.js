@@ -8,7 +8,7 @@
  * @param {JsSIP.UA} ua
  * @param {JsSIP.Transport} transport
  */
-(function(JsSIP) {
+module.exports = function(JsSIP) {
 var Registrator,
   LOG_PREFIX = JsSIP.name +' | '+ 'REGISTRATOR' +' | ';
 
@@ -314,4 +314,4 @@ Registrator.prototype = {
 };
 
 JsSIP.Registrator = Registrator;
-}(JsSIP));
+};

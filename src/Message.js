@@ -7,7 +7,7 @@
  * @class Class creating SIP MESSAGE request.
  * @param {JsSIP.UA} ua
  */
-(function(JsSIP) {
+module.exports = function(JsSIP) {
 var Message;
 
 Message = function(ua) {
@@ -233,4 +233,4 @@ Message.prototype.reject = function(options) {
 };
 
 JsSIP.Message = Message;
-}(JsSIP));
+};

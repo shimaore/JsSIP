@@ -6,7 +6,7 @@
  * @augments JsSIP
  * @class Class creating an event emitter.
  */
-(function(JsSIP) {
+module.exports = function(JsSIP) {
 var
   EventEmitter,
   Event,
@@ -191,4 +191,4 @@ Event = function(type, sender, data) {
 
 JsSIP.EventEmitter = EventEmitter;
 JsSIP.Event = Event;
-}(JsSIP));
+};

@@ -9,7 +9,7 @@
  * @param {Object} applicant
  * @param {JsSIP.UA} ua
  */
-(function(JsSIP) {
+module.exports = function(JsSIP) {
 var RequestSender,
   LOG_PREFIX = JsSIP.name +' | '+ 'REQUEST SENDER' +' | ';
 
@@ -133,4 +133,4 @@ RequestSender.prototype = {
 };
 
 JsSIP.RequestSender = RequestSender;
-}(JsSIP));
+};

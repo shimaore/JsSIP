@@ -11,7 +11,7 @@
  * @param {Object} [parameters]
  *
  */
-(function(JsSIP) {
+module.exports = function(JsSIP) {
 var NameAddrHeader;
 
 NameAddrHeader = function(uri, display_name, parameters) {
@@ -115,4 +115,4 @@ NameAddrHeader.parse = function(name_addr_header) {
 };
 
 JsSIP.NameAddrHeader = NameAddrHeader;
-}(JsSIP));
+};

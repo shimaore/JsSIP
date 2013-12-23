@@ -2,7 +2,7 @@
  * @fileoverview SIP Message
  */
 
-(function(JsSIP) {
+module.exports = function(JsSIP) {
 var
   OutgoingRequest,
   IncomingMessage,
@@ -446,4 +446,4 @@ IncomingResponse.prototype = new IncomingMessage();
 JsSIP.OutgoingRequest = OutgoingRequest;
 JsSIP.IncomingRequest = IncomingRequest;
 JsSIP.IncomingResponse = IncomingResponse;
-}(JsSIP));
+};
