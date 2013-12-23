@@ -5,6 +5,7 @@
   "version": "0.3.7",
   "homepage": "https://github.com/shimaore/jssip-for-node",
   "author": "Stéphane Alnet <stephane@shimaore.net>",
+  "main": "src/JsSIP.js",
   "contributors": [
     {
       "url": "http://jssip.net/authors/"
