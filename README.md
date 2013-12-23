@@ -1,116 +1,47 @@
-<a href="http://jssip.net"><img src="http://jssip.net/images/jssip-banner.png"/></a>
+JsSIP for Node
+==============
 
-[![Build Status](https://travis-ci.org/versatica/JsSIP.png?branch=master)](https://travis-ci.org/versatica/JsSIP)
+This is a fork of [JsSIP] for Node.js.
 
-## Overview
+Why?
+====
 
-* SIP over [WebSocket](http://jssip.net/documentation/misc/sip_websocket/) (use real SIP in your web apps)
-* Audio/video calls ([WebRTC](http://jssip.net/documentation/misc/webrtc)), instant messaging and presence
-* Lightweight! (~140KB)
-* Easy to use and powerful user API
-* Works with OverSIP, Kamailio, Asterisk and repro (reSIProcate) servers ([more info](http://jssip.net/documentation/misc/interoperability))
-* Written by the authors of [draft-ietf-sipcore-sip-websocket](http://tools.ietf.org/html/draft-ietf-sipcore-sip-websocket) and [OverSIP](http://www.oversip.net)
+SIP.js is designed for Node.js, but I felt the SIP and SDP parsers, along with the overall stack, of JsSIP was better designed. On the other hand, the developers of JsSIP are targetting the browser and have no interest (at this time?) for Node.js as a target platform.
 
+I needed a SIP environment to do rapid prototyping of a A1/SIP gateway for the OsmoCom project and especially the nice folks over at FairWaves.
 
-## Getting Started
+Is it compatible with plain JsSIP?
+==================================
 
-The following simple JavaScript code creates a JsSIP User Agent instance and makes a SIP call:
+The browserify version of this project should pass all JsSIP tests.
 
-```javascript
-// Create our JsSIP instance and run it:
+This means you can use the JsSIP documentation to get started. However, since this implementation is different, please, please report all issues using our [tracker](issues) rather than JsSIP's, even if it appears the issues is with their code. I'd rather have an extra issue to handle than bother the original developers with something they might not care about and didn't ask for.
 
-var configuration = {
-  'ws_servers': 'ws://sip-ws.example.com',
-  'uri': 'sip:alice@example.com',
-  'password': 'superpassword'
-};
+How is it different from JsSIP?
+===============================
 
-var coolPhone = new JsSIP.UA(configuration);
+This implementation works on Node.js and provides a UDP transport. JsSIP works in the browser and uses WebSocket for transport.
 
-coolPhone.start();
+This implementation can support RTP proxying with my [RTP Proxy] project on Node.js.
 
+How is it different from sip.js?
+================================
 
-// Make an audio/video call:
+This implementation relies on JsSIP for SIP and SDP parsing, and implements the JsSIP API.
 
-// HTML5 <video> elements in which local and remote video will be shown
-var selfView =   document.getElementById('my-video');
-var remoteView =  document.getElementById('peer-video');
+However some parts were lifted off sip.js as they related to the Node.js interface.
 
-// Register callbacks to desired call events
-var eventHandlers = {
-  'progress': function(e){
-    console.log('call is in progress');
-  },
-  'failed': function(e){
-    console.log('call failed with cause: '+ e.data.cause);
-  },
-  'ended': function(e){
-    console.log('call ended with cause: '+ e.data.cause);
-  },
-  'started': function(e){
-    var rtcSession = e.sender;
+Limitations?
+============
 
-    console.log('call started');
+Plenty. This is designed for experimentation, not for production. This means at least that I'm not primarily interested in stack performance or issues dealing with complex SIP scenarios (e.g. proxies) at this time; however you're welcome to submit pull requests for any type of enhancements.
 
-    // Attach local stream to selfView
-    if (rtcSession.getLocalStreams().length > 0) {
-      selfView.src = window.URL.createObjectURL(rtcSession.getLocalStreams()[0]);
-    }
+Support
+=======
 
-    // Attach remote stream to remoteView
-    if (rtcSession.getRemoteStreams().length > 0) {
-      remoteView.src = window.URL.createObjectURL(rtcSession.getRemoteStreams()[0]);
-    }
-  }
-};
+Please use [github issues](issues) and [the wiki](wiki).
 
-var options = {
-  'eventHandlers': eventHandlers,
-  'mediaConstraints': {'audio': true, 'video': true}
-};
+Name
+====
 
-
-coolPhone.call('sip:bob@example.com', options);
-```
-
-Want to see more? Check the full [Getting Started](http://jssip.net/documentation/0.3.x/getting_started/) section in the project website.
-
-
-## Online Demo
-
-Check our **Tryit JsSIP** online demo:
-
-* [tryit.jssip.net](http://tryit.jssip.net)
-
-
-## Website and Documentation
-
-* [jssip.net](http://jssip.net/)
-
-
-## Download
-
-* [jssip.net/download](http://jssip.net/download/)
-
-
-## Authors
-
-### José Luis Millán
-
-* Main author. Core Designer and Developer.
-* <jmillan@aliax.net> (Github [@jmillan](https://github.com/jmillan))
-
-### Iñaki Baz Castillo
-
-* Core Designer and Developer.
-* <ibc@aliax.net> (Github [@ibc](https://github.com/ibc))
-
-### Saúl Ibarra Corretgé
-
-* Core Designer.
-* <saghul@gmail.com> (Github [@saghul](https://github.com/saghul))
-
-
-## License
-
-JsSIP is released under the [MIT license](http://jssip.net/license).
+I choose the name `jssip-for-node` in npm because I felt that if the original JsSIP developers were interested in providing a Node.js implementation of their stack, this was their spot, not mine. I'll be happy to use the name `jssip` if there is consensus, though.
