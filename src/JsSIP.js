@@ -40,7 +40,6 @@ var JsSIP = (function() {
   require('./SanityCheck')(JsSIP);
   require('./DigestAuthentication')(JsSIP);
   // require('./Subscriber')(JsSIP); /* not present in srcFiles for original JsSIP */
-  require('./WebRTC')(JsSIP); /* WebRTC media (only on browser at this time */
 
   JsSIP.Grammar = require('./Grammar/dist/Grammar.js');
 
@@ -48,8 +47,10 @@ var JsSIP = (function() {
 }());
 if(typeof window === 'undefined') {
   module.exports = JsSIP;
+  require('./Node-WebRTC')(JsSIP);
   JsSIP.global = global;
 } else {
   window.JsSIP = JsSIP;
+  require('./WebRTC')(JsSIP); /* WebRTC media (only on browser at this time) */
   JsSIP.global = window;
 }

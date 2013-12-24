@@ -20,7 +20,7 @@ This means you can use the JsSIP documentation to get started. However, since th
 How is it different from JsSIP?
 ===============================
 
-This implementation works on Node.js and provides a UDP transport. JsSIP works in the browser and uses WebSocket for transport.
+This implementation works on Node.js. JsSIP works in the browser. Currently both versions use WebSocket for transport (I use FreeSwitch as a WebSocket handler), although this version could add native UDP, etc. transports.
 
 This implementation can support RTP proxying with my [RTP Proxy] project on Node.js.
 
@@ -29,7 +29,7 @@ How is it different from sip.js?
 
 This implementation relies on JsSIP for SIP and SDP parsing, and implements the JsSIP API.
 
-However some parts were lifted off sip.js as they related to the Node.js interface.
+Also at this time no native transports (UDP, TCP, TLS) are provided.
 
 Limitations?
 ============
