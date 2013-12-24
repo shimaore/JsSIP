@@ -47,7 +47,14 @@ var JsSIP = (function() {
 }());
 if(typeof window === 'undefined') {
   module.exports = JsSIP;
-  require('./Node-WebRTC')(JsSIP);
+  JsSIP.setWebRTC = function(module) {
+    JsSIP.WebRTC = module;
+    if(JsSIP.WebRTC.getUserMedia && JsSIP.WebRTC.RTCPeerConnection && JsSIP.WebRTC.RTCSessionDescription) {
+      WebRTC.isSupported = true;
+    } else {
+      WebRTC.isSupported = false;
+    }
+  }
   JsSIP.global = global;
 } else {
   window.JsSIP = JsSIP;
