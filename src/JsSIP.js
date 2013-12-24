@@ -50,9 +50,9 @@ if(typeof window === 'undefined') {
   JsSIP.setWebRTC = function(module) {
     JsSIP.WebRTC = module;
     if(JsSIP.WebRTC.getUserMedia && JsSIP.WebRTC.RTCPeerConnection && JsSIP.WebRTC.RTCSessionDescription) {
-      WebRTC.isSupported = true;
+      JsSIP.WebRTC.isSupported = true;
     } else {
-      WebRTC.isSupported = false;
+      JsSIP.WebRTC.isSupported = false;
     }
   }
   JsSIP.global = global;
