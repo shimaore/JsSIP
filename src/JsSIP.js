@@ -23,7 +23,6 @@ var JsSIP = (function() {
   require('./Constants')(JsSIP);
   require('./Exceptions')(JsSIP);
   require('./Timers')(JsSIP);
-  require('./Transport')(JsSIP); /* WebSocket Transport */
   require('./Parser')(JsSIP);
   require('./SIPMessage')(JsSIP);
   require('./URI')(JsSIP);
@@ -33,9 +32,7 @@ var JsSIP = (function() {
   require('./RequestSender')(JsSIP);
   require('./InDialogRequestSender')(JsSIP);
   require('./Registrator')(JsSIP);
-  require('./RTCSession')(JsSIP);
   require('./Message')(JsSIP);
-  require('./UA')(JsSIP);
   require('./Utils')(JsSIP);
   require('./SanityCheck')(JsSIP);
   require('./DigestAuthentication')(JsSIP);
@@ -47,17 +44,12 @@ var JsSIP = (function() {
 }());
 if(typeof window === 'undefined') {
   module.exports = JsSIP;
-  JsSIP.setWebRTC = function(module) {
-    JsSIP.WebRTC = module;
-    if(JsSIP.WebRTC.getUserMedia && JsSIP.WebRTC.RTCPeerConnection && JsSIP.WebRTC.RTCSessionDescription) {
-      JsSIP.WebRTC.isSupported = true;
-    } else {
-      JsSIP.WebRTC.isSupported = false;
-    }
-  }
   JsSIP.global = global;
 } else {
   window.JsSIP = JsSIP;
+  require('./RTCSession')(JsSIP); /* A generic RTCSession; however RTCSession/RTCMediaHandler depends on WebRTC */
+  require('./Transport')(JsSIP); /* WebSocket Transport */
   require('./WebRTC')(JsSIP); /* WebRTC media (only on browser at this time) */
+  require('./UA')(JsSIP); /* WebSocket + WebRTC UA */
   JsSIP.global = window;
 }

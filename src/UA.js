@@ -445,11 +445,11 @@ UA.prototype.receiveRequest = function(request) {
 
     switch(method) {
       case JsSIP.C.INVITE:
-        if(JsSIP.WebRTC.isSupported) {
+        if(JsSIP.RTCSession) {
           session = new JsSIP.RTCSession(this);
           session.init_incoming(request);
         } else {
-          console.warn(LOG_PREFIX +'INVITE received but WebRTC is not supported');
+          console.warn(LOG_PREFIX +'INVITE received but RTCSession is not supported');
           request.reply(488);
         }
         break;

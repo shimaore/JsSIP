@@ -10,7 +10,7 @@ module.exports = function(JsSIP) {
 
 // Load dependencies
 var RequestSender   = require('./RTCSession/RequestSender')(JsSIP);
-var RTCMediaHandler = require('./RTCSession/RTCMediaHandler')(JsSIP);
+var MediaHandler    = require('./RTCSession/MediaHandler')(JsSIP);
 var DTMF            = require('./RTCSession/DTMF')(JsSIP);
 
 var RTCSession,
@@ -43,7 +43,7 @@ RTCSession = function(ua) {
   this.status = C.STATUS_NULL;
   this.dialog = null;
   this.earlyDialogs = {};
-  this.rtcMediaHandler = null;
+  this.MediaHandler = null;
 
   // Session Timers
   this.timers = {
@@ -392,22 +392,6 @@ RTCSession.prototype.sendDTMF = function(tones, options) {
 
   // Send the first tone
   sendDTMF();
-};
-
-
-/**
- * RTCPeerconnection handlers
- */
-RTCSession.prototype.getLocalStreams = function() {
-  return this.rtcMediaHandler &&
-    this.rtcMediaHandler.peerConnection &&
-    this.rtcMediaHandler.peerConnection.getLocalStreams() || [];
-};
-
-RTCSession.prototype.getRemoteStreams = function() {
-  return this.rtcMediaHandler &&
-    this.rtcMediaHandler.peerConnection &&
-    this.rtcMediaHandler.peerConnection.getRemoteStreams() || [];
 };
 
 
