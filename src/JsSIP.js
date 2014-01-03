@@ -41,7 +41,7 @@ var JsSIP = (function() {
   require('./DigestAuthentication')(JsSIP);
   // require('./Subscriber')(JsSIP); /* not present in srcFiles for original JsSIP */
 
-  JsSIP.Grammar = require('./Grammar/dist/Grammar.js');
+  JsSIP.Grammar = require('./Grammar/dist/Grammar.js')(JsSIP);
 
   return JsSIP;
 }());

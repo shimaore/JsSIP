@@ -16,7 +16,7 @@ module.exports = function(grunt) {
       },
       devel: {
         files: {
-          'dist/<%= pkg.name %>-devel.js': 'src/JsSIP.js'
+          'dist/jssip-devel.js': 'src/JsSIP.js'
         }
       }
     }
@@ -47,6 +47,8 @@ module.exports = function(grunt) {
       var fs = require('fs');
       var grammar = fs.readFileSync('src/Grammar/dist/Grammar.js').toString();
       var modified_grammar = grammar.replace(/throw new this\.SyntaxError\(([\s\S]*?)\);([\s\S]*?)}([\s\S]*?)return result;/, 'new this.SyntaxError($1);\n        return -1;$2}$3return data;');
+      modified_grammar = modified_grammar.replace(/^module\.exports = \(function\(\){/, 'module.exports = (function(JsSIP){');
+      modified_grammar = modified_grammar.replace(/}\)\(\);\s*$/, '});');
       fs.writeFileSync('src/Grammar/dist/Grammar.js', modified_grammar);
       console.log('OK');
       done();  // Tell grunt that async task has succeeded.
