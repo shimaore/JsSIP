@@ -45,19 +45,22 @@ var JsSIP = (function() {
 
   return JsSIP;
 }());
-if(typeof window === 'undefined') {
-  module.exports = JsSIP;
-  JsSIP.setWebRTC = function(module) {
-    JsSIP.WebRTC = module;
-    if(JsSIP.WebRTC.getUserMedia && JsSIP.WebRTC.RTCPeerConnection && JsSIP.WebRTC.RTCSessionDescription) {
-      JsSIP.WebRTC.isSupported = true;
-    } else {
-      JsSIP.WebRTC.isSupported = false;
-    }
+
+JsSIP.setWebRTC = function(module) {
+  JsSIP.WebRTC = module;
+  if(JsSIP.WebRTC.getUserMedia && JsSIP.WebRTC.RTCPeerConnection && JsSIP.WebRTC.RTCSessionDescription) {
+    JsSIP.WebRTC.isSupported = true;
+  } else {
+    JsSIP.WebRTC.isSupported = false;
   }
+}
+
+if(typeof module !== 'undefined') {
   JsSIP.global = global;
-} else {
-  window.JsSIP = JsSIP;
-  require('./WebRTC')(JsSIP); /* WebRTC media (only on browser at this time) */
+  module.exports = JsSIP;
+}
+if(typeof window !== 'undefined') {
+  require('./WebRTC')(JsSIP); /* Native WebRTC media (only on browser at this time) */
   JsSIP.global = window;
+  window.JsSIP = JsSIP;
 }
