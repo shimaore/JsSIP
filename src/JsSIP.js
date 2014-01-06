@@ -23,7 +23,6 @@ var JsSIP = (function() {
   require('./Constants')(JsSIP);
   require('./Exceptions')(JsSIP);
   require('./Timers')(JsSIP);
-  require('./Transport')(JsSIP); /* WebSocket Transport */
   require('./Parser')(JsSIP);
   require('./SIPMessage')(JsSIP);
   require('./URI')(JsSIP);
@@ -56,10 +55,13 @@ JsSIP.setWebRTC = function(module) {
 }
 
 if(typeof module !== 'undefined') {
+  WebSocket = require('ws');
+  require('./Transport')(JsSIP,WebSocket); /* FIXME: WebSocket Transport */
   JsSIP.global = global;
   module.exports = JsSIP;
 }
 if(typeof window !== 'undefined') {
+  require('./Transport')(JsSIP,window.WebSocket); /* WebSocket Transport */
   require('./WebRTC')(JsSIP); /* Native WebRTC media (only on browser at this time) */
   JsSIP.global = window;
   window.JsSIP = JsSIP;

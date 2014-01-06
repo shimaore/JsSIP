@@ -8,7 +8,7 @@
  * @param {JsSIP.UA} ua
  * @param {Object} server ws_server Object
  */
-module.exports = function(JsSIP) {
+module.exports = function(JsSIP,WebSocket) {
 var Transport,
   LOG_PREFIX = JsSIP.name +' | '+ 'TRANSPORT' +' | ',
   C = {
