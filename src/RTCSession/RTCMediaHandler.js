@@ -9,6 +9,8 @@
  */
 module.exports = function(JsSIP){
 
+var LOG_PREFIX = JsSIP.name +' | '+ 'RTC Media Handler' +' | ';
+
 var RTCMediaHandler = function(session, constraints) {
   constraints = constraints || {};
 
